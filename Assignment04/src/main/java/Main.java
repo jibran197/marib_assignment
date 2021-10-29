@@ -1,8 +1,6 @@
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +18,6 @@ public class Main extends HttpServlet {
      */
     public Main() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -76,29 +73,7 @@ public class Main extends HttpServlet {
 					DriverManager.getConnection("jdbc:mysql://localhost/njit?user=root&password=Marib@123");
 			Statement stmt = con.createStatement();
 			resultSet = stmt.executeQuery(query);			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return resultSet;
@@ -188,12 +163,9 @@ public class Main extends HttpServlet {
 		    resultsTable+="</table>";
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			resultsTable = this.getBaseHTML()+this.getSearchHTMLBlock()+e;
-			
 		}
 		return resultsTable;
-		
 	}
 	
 	// Returns the Search Block which shows the form for Search
@@ -252,21 +224,8 @@ public class Main extends HttpServlet {
 	// To wrap the HTML Blocks common for all
 	
 	private String wrapHTMLBody(String basePageHTML) {
-		return "<!DOCTYPE html>"+
-				"<html>"+
-				"<head>"+
+		return "<!DOCTYPE html>"+"<html>"+"<head>"+
 				basePageHTML+
-				"</body>"+
-				"</html>";
+				"</body>"+"</html>";
 	}
-	
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
